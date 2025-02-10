@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Pressable } from 'react-native';
 import React, { useState } from 'react';
 import { useRouter } from 'expo-router';
+import { router } from 'expo-router';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -13,6 +14,11 @@ const Login = () => {
             return;
         }
         Alert.alert('Login Successful', `Welcome back, ${email}!`);
+        navigateToUpdateProfile();
+    };
+
+    const navigateToUpdateProfile = () => {
+        router.push('/(screens)/(user)/updateProfile');
     };
 
     const navigateToSignUp = () => {
@@ -109,6 +115,29 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         color: '#4CAF50',
         marginTop: 5,
+    },
+    skipButton: {
+        margin: 16,
+        bottom: 40,
+        paddingHorizontal: 30,
+        paddingVertical: 12,
+        backgroundColor: '#493d8a',
+        borderRadius: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        elevation: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+        width: 200,
+    },
+    skipText: {
+        color: 'white',
+        fontWeight: '500',
+        fontSize: 18,
+        textAlign: 'center',
+        textTransform: 'uppercase',
     },
 });
 
