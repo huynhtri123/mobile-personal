@@ -14,11 +14,11 @@ const Login = () => {
             return;
         }
         Alert.alert('Login Successful', `Welcome back, ${email}!`);
-        navigateToUpdateProfile();
+        goToHome();
     };
 
-    const navigateToUpdateProfile = () => {
-        router.push('/(screens)/(user)/updateProfile');
+    const goToHome = () => {
+        router.push('/(screens)/home');
     };
 
     const navigateToSignUp = () => {
