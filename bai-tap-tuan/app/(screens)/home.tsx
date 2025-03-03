@@ -23,6 +23,13 @@ const Home = () => {
         router.push('/(screens)/(user)/updateProfile');
     };
 
+    const goToProductDetail = (product: any) => {
+        router.push({
+            pathname: '/(screens)/(home)/productDetail',
+            params: { product: JSON.stringify(product) },
+        });
+    };
+
     const [products, setProducts] = useState([
         {
             id: '1',
@@ -182,11 +189,13 @@ const Home = () => {
                         <FlatList
                             data={products.slice(0, 10)}
                             renderItem={({ item }) => (
-                                <View style={styles.product}>
-                                    <Image source={{ uri: item.image }} style={styles.productImage} />
-                                    <Text style={styles.productName}>{item.name}</Text>
-                                    <Text style={styles.productPrice}>{item.price}</Text> {/* Hiển thị giá */}
-                                </View>
+                                <TouchableOpacity onPress={() => goToProductDetail(item)}>
+                                    <View style={styles.product}>
+                                        <Image source={{ uri: item.image }} style={styles.productImage} />
+                                        <Text style={styles.productName}>{item.name}</Text>
+                                        <Text style={styles.productPrice}>{item.price}</Text> {/* Hiển thị giá */}
+                                    </View>
+                                </TouchableOpacity>
                             )}
                             keyExtractor={(item) => item.id}
                             horizontal
@@ -197,13 +206,15 @@ const Home = () => {
                 }
                 data={products.slice(0, visibleProducts)} // Chỉ hiển thị số lượng sản phẩm hiện tại
                 renderItem={({ item }) => (
-                    <View style={styles.productContainer}>
-                        <Image source={{ uri: item.image }} style={styles.productImageLeft} />
-                        <View style={styles.productInfo}>
-                            <Text style={styles.productName}>{item.name}</Text>
-                            <Text style={styles.productPrice}>{item.price}</Text>
+                    <TouchableOpacity onPress={() => goToProductDetail(item)}>
+                        <View style={styles.productContainer}>
+                            <Image source={{ uri: item.image }} style={styles.productImageLeft} />
+                            <View style={styles.productInfo}>
+                                <Text style={styles.productName}>{item.name}</Text>
+                                <Text style={styles.productPrice}>{item.price}</Text>
+                            </View>
                         </View>
-                    </View>
+                    </TouchableOpacity>
                 )}
                 keyExtractor={(item) => item.id}
                 onEndReached={loadMoreProducts}
