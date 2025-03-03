@@ -1,7 +1,6 @@
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Pressable } from 'react-native';
 import React, { useState } from 'react';
 import { useRouter } from 'expo-router';
-import { router } from 'expo-router';
 
 const Login = () => {
     const [email, setEmail] = useState('');
